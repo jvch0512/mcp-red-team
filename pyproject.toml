@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-red-team"
+version = "1.0.0"
+description = "Offensive tester for MCP servers: tool poisoning, argument injection, SSRF, secret leaks, rug pulls and robustness. Standard library only."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["mcp", "red-team", "prompt-injection", "ai-security", "security-testing"]
+
+[project.scripts]
+mcp-red-team = "mcp_red_team.cli:main"
+
+[tool.setuptools]
+packages = ["mcp_red_team"]

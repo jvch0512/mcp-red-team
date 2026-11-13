@@ -1,0 +1,25 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -W error::ResourceWarning -m unittest discover -s tests -t .
+      - name: Sample report is up to date
+        run: |
+          python -m mcp_red_team --active --fail-on never -- python targets/vuln_server.py > /tmp/report.md
+          diff /tmp/report.md docs/sample-report.md
+      - name: The hardened control is clean, the vulnerable demo fails the gate
+        run: |
+          python -m mcp_red_team --active -- python targets/hardened_server.py > /dev/null
+          ! python -m mcp_red_team --active -- python targets/vuln_server.py > /dev/null

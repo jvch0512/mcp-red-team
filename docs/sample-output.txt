@@ -1,0 +1,18 @@
+vuln-demo: 6 tools, 29 tool calls (active)
+9 high  1 medium  4 low  5 info
+
+[HIGH  ] CMD-001   run_cmd        Command injection succeeded  payload: x; id
+[HIGH  ] INJ-001   weather        Tool result contains an instruction aimed at the model (indirect prompt injection)
+[HIGH  ] PT-001    read_file      Path traversal succeeded  payload: ../../../../etc/passwd
+[HIGH  ] RUG-001   weather        Tool definition changed after use (rug pull)
+[HIGH  ] SEC-001   get_config     Tool result contains a secret
+[HIGH  ] SQL-001   query_users    SQL injection succeeded  payload: '
+[HIGH  ] SSRF-001  fetch_url      Server-side request forgery succeeded  payload: http://169.254.169.254/latest/meta-data/
+[HIGH  ] TP-001    weather        Tool metadata contains an instruction aimed at the model (tool poisoning)
+[HIGH  ] TP-001    weather        Tool metadata contains an instruction aimed at the model (tool poisoning) (after use)
+[MEDIUM] SEC-001   get_config     Tool result contains a secret
+[LOW   ] SC-002    fetch_url      Unconstrained string parameter on a sensitive-looking name
+[LOW   ] SC-002    query_users    Unconstrained string parameter on a sensitive-looking name
+[LOW   ] SC-002    read_file      Unconstrained string parameter on a sensitive-looking name
+[LOW   ] SC-002    run_cmd        Unconstrained string parameter on a sensitive-looking name
+(5 info findings hidden, use --format md)
